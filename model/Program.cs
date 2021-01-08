@@ -3,6 +3,11 @@ using Range = Microsoft.ML.Probabilistic.Models.Range;
 using Microsoft.ML.Probabilistic.Models;
 using Microsoft.ML.Probabilistic.Models.Attributes;
 using Microsoft.ML.Probabilistic.Compiler;
+using Microsoft.ML.Probabilistic.Distributions;
+using Microsoft.ML.Probabilistic.Algorithms;
+using Microsoft.ML.Probabilistic.Math;
+using Microsoft.ML.Probabilistic.Compiler.Transforms;
+using Microsoft.ML.Probabilistic.Compiler.Visualizers;
 using Algorithms =  Microsoft.ML.Probabilistic.Algorithms;
 using System.IO;
 namespace model
@@ -16,13 +21,13 @@ namespace model
             // the nps.csv file contains all the customer nps scores.
             // responseFilename = "responses-generate.csv";
             string[] lines = File.ReadAllLines("..\\data\\iris-one-feature.csv");
-            bool[] isSetosa = new bool[lines.Length];
+            bool[] isSetosaLabel = new bool[lines.Length];
             double[] featureVal = new double[lines.Length];
 
             for (int i = 0; i < lines.Length; i++)
             {
                 string[] strArray = lines[i].Split('|');
-                isSetosa[i] = strArray[1] == "1";
+                isSetosaLabel[i] = strArray[1] == "1";
                 featureVal[i] = float.Parse(strArray[0].Replace(".", ","));
             }
 
@@ -39,56 +44,39 @@ namespace model
             VariableArray<double> featureValues = Variable.Array<double>(flower).Named("featureValue").Attrib(new DoNotInfer());
             // FeatureValue = Variable.Array<double>(flower).Named("featureValue").Attrib(new DoNotInfer());
 
+            // New creates distribution not RV
             // The weight
-            WeightPrior = Variable.New<Gaussian>().Named("WeightPrior").Attrib(new DoNotInfer());
-            Weight = Variable.New<double>().Named("weight");
-            Weight.SetTo(Variable<double>.Random(WeightPrior));
-
+            Variable<double> weight = Variable.GaussianFromMeanAndVariance(0,1).Named("weight");     
             // The threshold
-            ThresholdPrior = Variable.New<Gaussian>().Named("ThresholdPrior").Attrib(new DoNotInfer());
-            Threshold = Variable.New<double>().Named("threshold");
-            Threshold.SetTo(Variable<double>.Random(ThresholdPrior));
-
-            // Noise Variance
-            NoiseVariance = Variable.New<double>().Named("NoiseVariance").Attrib(new DoNotInfer());
-
+            Variable<double> threshold = Variable.GaussianFromMeanAndVariance(0,10).Named("threshold");
             // Label: is the message replied to?
-            RepliedTo = Variable.Array<bool>(message).Named("repliedTo");
-
+            VariableArray<bool> isSetosa = Variable.Array<bool>(flower).Named("isSetosa");
             // Loop over emails
-            using (Variable.ForEach(message))
+            using (Variable.ForEach(flower))
             {
-                var score = (FeatureValue[message] * Weight).Named("score");
+                var score = (featureValues[flower] * weight).Named("score");
 
-                var noisyScore = Variable.GaussianFromMeanAndVariance(score, NoiseVariance).Named("noisyScore");
-                RepliedTo[message] = noisyScore > Threshold;
+                var noisyScore = Variable.GaussianFromMeanAndVariance(score, 10).Named("noisyScore");
+                isSetosa[flower] = noisyScore > threshold;
             }
 
-            // InitializeEngine();
+            /********* observations *********/
+            isSetosa.ObservedValue = isSetosaLabel;
+            featureValues.ObservedValue = featureVal;
+            /*******************************/
 
-            // Engine.OptimiseForVariables = Mode == InputMode.Training
-            //                                        ? new IVariable[] { Weight, Threshold }
-            //                                        : Engine.OptimiseForVariables = new IVariable[] { RepliedTo };
+            /********** inference **********/
+            var InferenceEngine = new InferenceEngine(new ExpectationPropagation());
+            // var InferenceEngine = new InferenceEngine(new VariationalMessagePassing());
+            InferenceEngine.NumberOfIterations = 50;
+            // InferenceEngine.ShowFactorGraph = true;
 
-            
+            Gaussian postWeight = InferenceEngine.Infer<Gaussian>(weight);
+            Gaussian postThreshold = InferenceEngine.Infer<Gaussian>(threshold);
 
-            Variable<bool> firstCoin = Variable.Bernoulli(0.5).Named("firstCoin");
-            Variable<bool> secondCoin = Variable.Bernoulli(0.5).Named("secondCoin");
-            Variable<bool> bothHeads = (firstCoin & secondCoin).Named("bothHeads");
-            
-            InferenceEngine engine = new InferenceEngine();
-
-            if (engine.Algorithm is Algorithms.VariationalMessagePassing)
-            {
-                Console.WriteLine("This example does not run with Variational Message Passing");
-                return;
-            }
-            Console.WriteLine("Probability both coins are heads: " + engine.Infer(bothHeads));
-            bothHeads.ObservedValue = true; 
-            Console.WriteLine("Probability distribution over firstCoin: " + engine.Infer(firstCoin));
-
-            engine.ShowFactorGraph = true;
-            // engine.ShowMsl = true;
+            Console.WriteLine(postWeight);
+            Console.WriteLine(postThreshold);
+            ///*******************************/
         }
     }
 }
