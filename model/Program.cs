@@ -1,6 +1,7 @@
 ﻿using System;
 using Range = Microsoft.ML.Probabilistic.Models.Range;
 using Microsoft.ML.Probabilistic.Models;
+using System.Globalization;
 using Microsoft.ML.Probabilistic.Models.Attributes;
 using Microsoft.ML.Probabilistic.Compiler;
 using Microsoft.ML.Probabilistic.Distributions;
@@ -10,6 +11,7 @@ using Microsoft.ML.Probabilistic.Compiler.Transforms;
 using Microsoft.ML.Probabilistic.Compiler.Visualizers;
 using Algorithms =  Microsoft.ML.Probabilistic.Algorithms;
 using System.IO;
+using System.Text;
 namespace model
 {
     class Program
@@ -17,10 +19,9 @@ namespace model
         static void Main(string[] args)
         {
 
-            
-            // the nps.csv file contains all the customer nps scores.
-            // responseFilename = "responses-generate.csv";
-            string[] lines = File.ReadAllLines("..\\data\\iris-one-feature.csv");
+            string dataDir = args[0];
+            string datasetFilename = dataDir+args[1];
+            string[] lines = File.ReadAllLines(datasetFilename);
             bool[] isSetosaLabel = new bool[lines.Length];
             double[] featureVal = new double[lines.Length];
 
@@ -32,26 +33,25 @@ namespace model
             }
 
             // Creating the model
-
             int numberOfFlowers = lines.Length;
             Range flower = new Range(numberOfFlowers).Named("flower");
 
             // Make sure that the range across flowers is handled sequentially
-            // - this is necessary to ensure the model converges during training
             flower.AddAttribute(new Sequential());
 
-            // observed data
-            VariableArray<double> featureValues = Variable.Array<double>(flower).Named("featureValue").Attrib(new DoNotInfer());
-            // FeatureValue = Variable.Array<double>(flower).Named("featureValue").Attrib(new DoNotInfer());
+            // Variables
 
-            // New creates distribution not RV
-            // The weight
+            // The feature - x
+            VariableArray<double> featureValues = Variable.Array<double>(flower).Named("featureValue").Attrib(new DoNotInfer());
+            // The label - y
+            VariableArray<bool> isSetosa = Variable.Array<bool>(flower).Named("isSetosa");
+
+            // The weight - w
             Variable<double> weight = Variable.GaussianFromMeanAndVariance(0,1).Named("weight");     
             // The threshold
             Variable<double> threshold = Variable.GaussianFromMeanAndVariance(0,10).Named("threshold");
-            // Label: is the message replied to?
-            VariableArray<bool> isSetosa = Variable.Array<bool>(flower).Named("isSetosa");
-            // Loop over emails
+
+            // Loop over flowers
             using (Variable.ForEach(flower))
             {
                 var score = (featureValues[flower] * weight).Named("score");
@@ -73,10 +73,25 @@ namespace model
 
             Gaussian postWeight = InferenceEngine.Infer<Gaussian>(weight);
             Gaussian postThreshold = InferenceEngine.Infer<Gaussian>(threshold);
+            /*******************************/
+
 
             Console.WriteLine(postWeight);
             Console.WriteLine(postThreshold);
-            ///*******************************/
+
+                     // write outputs to file
+            // var storeSites = new StringBuilder();
+            var results = new StringBuilder();
+
+            results.AppendLine("variable; mean; variance");
+            var line = string.Format("postWeight;{0};{1}", postWeight.GetMean(), postWeight.GetVariance());
+            results.AppendLine(line.Replace(',', '.'));
+            line = string.Format("postThreshold;{0};{1}", postThreshold.GetMean(), postThreshold.GetVariance());
+            results.AppendLine(line.Replace(',', '.'));
+
+
+            File.WriteAllText(dataDir+"results.csv", results.ToString());
+            
         }
     }
 }
