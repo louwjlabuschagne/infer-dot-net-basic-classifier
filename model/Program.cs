@@ -79,16 +79,15 @@ namespace model
             Console.WriteLine(postWeight);
             Console.WriteLine(postThreshold);
 
-                     // write outputs to file
+            // write outputs to file
             // var storeSites = new StringBuilder();
             var results = new StringBuilder();
 
-            results.AppendLine("variable; mean; variance");
+            results.AppendLine("variable;mean;variance");
             var line = string.Format("postWeight;{0};{1}", postWeight.GetMean(), postWeight.GetVariance());
             results.AppendLine(line.Replace(',', '.'));
             line = string.Format("postThreshold;{0};{1}", postThreshold.GetMean(), postThreshold.GetVariance());
             results.AppendLine(line.Replace(',', '.'));
-
 
             File.WriteAllText(dataDir+"results.csv", results.ToString());
             
