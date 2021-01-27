@@ -23,8 +23,9 @@ namespace model
             for (int i = 0; i < lines.Length; i++)
             {
                 string[] strArray = lines[i].Split('|');
-                isSetosaLabel[i] = strArray[1] == "1";
-                featureVal[i] = float.Parse(strArray[0].Replace(".", ","));
+                isSetosaLabel[i] = strArray[1] == "1.0";
+                
+                featureVal[i] = float.Parse(strArray[0]);
             }
 
             // Creating the model
@@ -51,7 +52,7 @@ namespace model
             {
                 var score = (featureValues[n] * weight).Named("score");
 
-                var noisyScore = Variable.GaussianFromMeanAndVariance(score, 10).Named("noisyScore");
+                var noisyScore = Variable.GaussianFromMeanAndVariance(score, 100).Named("noisyScore");
                 isSetosa[n] = noisyScore > threshold;
             }
 
