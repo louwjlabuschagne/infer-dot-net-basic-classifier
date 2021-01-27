@@ -1,15 +1,9 @@
 ﻿using System;
 using Range = Microsoft.ML.Probabilistic.Models.Range;
 using Microsoft.ML.Probabilistic.Models;
-using System.Globalization;
 using Microsoft.ML.Probabilistic.Models.Attributes;
-using Microsoft.ML.Probabilistic.Compiler;
 using Microsoft.ML.Probabilistic.Distributions;
 using Microsoft.ML.Probabilistic.Algorithms;
-using Microsoft.ML.Probabilistic.Math;
-using Microsoft.ML.Probabilistic.Compiler.Transforms;
-using Microsoft.ML.Probabilistic.Compiler.Visualizers;
-using Algorithms =  Microsoft.ML.Probabilistic.Algorithms;
 using System.IO;
 using System.Text;
 namespace model
@@ -19,6 +13,7 @@ namespace model
         static void Main(string[] args)
         {
 
+            // Reading in the data
             string dataDir = args[0];
             string datasetFilename = dataDir+args[1];
             string[] lines = File.ReadAllLines(datasetFilename);
@@ -49,7 +44,7 @@ namespace model
             // The weight - w
             Variable<double> weight = Variable.GaussianFromMeanAndVariance(0,1).Named("weight");     
             // The threshold
-            Variable<double> threshold = Variable.GaussianFromMeanAndVariance(0,10).Named("threshold");
+            Variable<double> threshold = Variable.GaussianFromMeanAndVariance(-5,10).Named("threshold");
 
             // Loop over flowers
             using (Variable.ForEach(flower))
@@ -68,19 +63,17 @@ namespace model
             /********** inference **********/
             var InferenceEngine = new InferenceEngine(new ExpectationPropagation());
             // var InferenceEngine = new InferenceEngine(new VariationalMessagePassing());
-            InferenceEngine.NumberOfIterations = 50;
+            InferenceEngine.NumberOfIterations = 200;
             // InferenceEngine.ShowFactorGraph = true;
 
             Gaussian postWeight = InferenceEngine.Infer<Gaussian>(weight);
             Gaussian postThreshold = InferenceEngine.Infer<Gaussian>(threshold);
             /*******************************/
 
-
             Console.WriteLine(postWeight);
             Console.WriteLine(postThreshold);
 
             // write outputs to file
-            // var storeSites = new StringBuilder();
             var results = new StringBuilder();
 
             results.AppendLine("variable;mean;variance");
