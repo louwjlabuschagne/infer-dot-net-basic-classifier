@@ -5,10 +5,10 @@ This repo looks at building a `1-feature` probabilistic classifier. Whilst readi
 
 Although the <a href="https://mbmlbook.com/index.html">MBML book</a> is a brilliant book, the first 3 chapters cover very probabilistic approaches to solving problem - as it should, as that is what the book is all about 😅. However, coming from traditional machine learning I was glad to see that in Chapter 4 they build a binary classifier, albeit in a probabilistic fashion. The MBML book uses <a href="https://en.wikipedia.org/wiki/Factor_graph#:~:text=A%20factor%20graph%20is%20a,the%20factorization%20of%20a%20function.&text=Factor%20graphs%20generalize%20constraint%20graphs,where%20all%20factors%20are%20constraints.">factor graphs</a> across the board - if you're not aquited with factor graphs, the TLDR from  <a href="https://en.wikipedia.org/wiki/Factor_graph#:~:text=A%20factor%20graph%20is%20a,the%20factorization%20of%20a%20function.&text=Factor%20graphs%20generalize%20constraint%20graphs,where%20all%20factors%20are%20constraints.">wikipedia</a>:
 
-A factor graph is a bipartite graph representing the factorization of a function. Given a factorization of a function $g$,
+A factor graph is a bipartite graph representing the factorization of a function. Given a factorization of a function <img style="filter: invert(100%);" src="https://render.githubusercontent.com/render/math?math=$g">.
 
 <p align="center">
-<img style="filter: invert(50%);" src="https://render.githubusercontent.com/render/math?math=$g(X_1,X_2,\dots,X_n) = \prod_{j=1}^m f_j(S_j)">
+<img style="filter: invert(100%);" src="https://render.githubusercontent.com/render/math?math=$g(X_1,X_2,\dots,X_n) = \prod_{j=1}^m f_j(S_j)">
 </p>
 
 
