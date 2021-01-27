@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 388 814" style="enable-background:new 0 0 388 814;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;stroke:#8A8A8A;stroke-miterlimit:10;}
+	.st1{font-family:'Times-Roman';}
+	.st2{font-size:9px;}
+	.st3{fill:#FFFFFF;stroke:#8A8A8A;}
+	.st4{font-size:8px;}
+	.st5{font-size:10px;}
+	.st6{font-family:'MyriadPro-Regular';}
+	.st7{font-size:12px;}
+</style>
+<g id="graph0" transform="scale(1 1) rotate(0) translate(4 810)">
+	<polygon class="st0" points="-4,4 -4,-810 384,-810 384,4 	"/>
+	<g id="node1">
+		<path class="st0" d="M42-806H12c-6,0-12,6-12,12v12c0,6,6,12,12,12h30c6,0,12-6,12-12v-12C54-800,48-806,42-806"/>
+		<text transform="matrix(1 0 0 1 24.75 -785.8)" class="st0 st1 st2">0</text>
+	</g>
+	<g id="node2">
+		<path class="st3" d="M112.5-725h-99c-6,0-12,6-12,12v12c0,6,6,12,12,12h99c6,0,12-6,12-12v-12C124.5-719,118.5-725,112.5-725"/>
+		<text transform="matrix(1 0 0 1 9.6816 -705.1)" class="st0 st1 st4">GaussianFromMeanAndVariance</text>
+	</g>
+	<g id="edge1">
+		<path class="st3" d="M34.8-769.9c4.7,10.3,10.8,23.8,16.1,35.5"/>
+		<polygon class="st3" points="54.2,-735.7 55.2,-725.1 47.9,-732.8 		"/>
+		<text transform="matrix(1 0 0 1 47.3379 -745.6)" class="st0 st1 st4">mean</text>
+	</g>
+	<g id="node4">
+		<path class="st3" d="M78-652H48c-6,0-12,6-12,12v12c0,6,6,12,12,12h30c6,0,12-6,12-12v-12C90-646,84-652,78-652"/>
+		<text transform="matrix(1 0 0 1 49.3916 -631.5)" class="st0 st1 st5">weight</text>
+	</g>
+	<g id="edge3">
+		<path class="st3" d="M63-688.8c0,8,0,17.8,0,26.7"/>
+		<polygon class="st3" points="66.5,-662 63,-652 59.5,-662 		"/>
+	</g>
+	<g id="node3">
+		<path class="st0" d="M114-806H84c-6,0-12,6-12,12v12c0,6,6,12,12,12h30c6,0,12-6,12-12v-12C126-800,120-806,114-806"/>
+		<text transform="matrix(1 0 0 1 96.75 -785.8)" class="st0 st1 st2">1</text>
+	</g>
+	<g id="edge2">
+		<path class="st3" d="M91.2-769.9c-4.7,10.3-10.8,23.8-16.2,35.5"/>
+		<polygon class="st3" points="78.1,-732.8 70.8,-725.1 71.8,-735.7 		"/>
+		<text transform="matrix(1 0 0 1 82.4551 -745.6)" class="st0 st1 st4">variance</text>
+	</g>
+	<g id="node6">
+		<path class="st3" d="M125-571H95c-6,0-12,6-12,12v12c0,6,6,12,12,12h30c6,0,12-6,12-12v-12C137-565,131-571,125-571"/>
+		<text transform="matrix(1 0 0 1 95.998 -551.1)" class="st0 st1 st4">Multiply</text>
+	</g>
+	<g id="edge5">
+		<path class="st3" d="M73.2-615.9c6.3,10.6,14.5,24.3,21.5,36.1"/>
+		<polygon class="st3" points="97.7,-581.5 99.8,-571.1 91.7,-577.9 		"/>
+		<text transform="matrix(1 0 0 1 87 -591.6)" class="st0 st1 st4">b</text>
+	</g>
+	<g id="node5">
+		<path class="st0" d="M195.5-652h-75c-6,0-12,6-12,12v12c0,6,6,12,12,12h75c6,0,12-6,12-12v-12C207.5-646,201.5-652,195.5-652"/>
+		<text transform="matrix(1 0 0 1 116.3594 -631.5)" class="st0 st1 st5">featureValue[flower]</text>
+	</g>
+	<g id="edge4">
+		<path class="st3" d="M147.6-615.9c-6.4,10.6-14.8,24.3-22,36.1"/>
+		<polygon class="st3" points="128.6,-577.8 120.4,-571.1 122.6,-581.5 		"/>
+		<text transform="matrix(1 0 0 1 135.2246 -591.6)" class="st0 st1 st4">a</text>
+	</g>
+	<g id="node7">
+		<path class="st3" d="M132.5-498h-45c-6,0-12,6-12,12v12c0,6,6,12,12,12h45c6,0,12-6,12-12v-12C144.5-492,138.5-498,132.5-498"/>
+		<text transform="matrix(1 0 0 1 83.0713 -477.5)" class="st0 st1 st5">score[flower]</text>
+	</g>
+	<g id="edge6">
+		<path class="st3" d="M110-534.8c0,8,0,17.8,0,26.7"/>
+		<polygon class="st3" points="113.5,-508 110,-498 106.5,-508 		"/>
+	</g>
+	<g id="node8">
+		<path class="st3" d="M209.5-417h-99c-6,0-12,6-12,12v12c0,6,6,12,12,12h99c6,0,12-6,12-12v-12C221.5-411,215.5-417,209.5-417"/>
+		<text transform="matrix(1 0 0 1 106.6816 -397.1)" class="st0 st1 st4">GaussianFromMeanAndVariance</text>
+	</g>
+	<g id="edge7">
+		<path class="st3" d="M120.8-461.9c6.7,10.6,15.4,24.3,22.9,36.1"/>
+		<polygon class="st3" points="146.8,-427.4 149.2,-417.1 140.9,-423.7 		"/>
+		<text transform="matrix(1 0 0 1 136.3379 -437.6)" class="st0 st1 st4">mean</text>
+	</g>
+	<g id="node10">
+		<path class="st3" d="M230.5-344h-69c-6,0-12,6-12,12v12c0,6,6,12,12,12h69c6,0,12-6,12-12v-12C242.5-338,236.5-344,230.5-344"/>
+		<text transform="matrix(1 0 0 1 157.4014 -323.5)" class="st0 st1 st5">noisyScore[flower]</text>
+	</g>
+	<g id="edge9">
+		<path class="st3" d="M168.7-380.8c4.2,8.3,9.3,18.4,14,27.6"/>
+		<polygon class="st3" points="186,-354.5 187.4,-344 179.7,-351.4 		"/>
+	</g>
+	<g id="node9">
+		<path class="st0" d="M205-498h-30c-6,0-12,6-12,12v12c0,6,6,12,12,12h30c6,0,12-6,12-12v-12C217-492,211-498,205-498"/>
+		<text transform="matrix(1 0 0 1 185.5 -477.8)" class="st0 st1 st2">10</text>
+	</g>
+	<g id="edge8">
+		<path class="st3" d="M183.5-461.9c-3.9,10.2-8.9,23.5-13.3,35.1"/>
+		<polygon class="st3" points="173.3,-425.2 166.5,-417.1 166.8,-427.7 		"/>
+		<text transform="matrix(1 0 0 1 175.4551 -437.6)" class="st0 st1 st4">variance</text>
+	</g>
+	<g id="node11">
+		<path class="st3" d="M256-263h-30c-6,0-12,6-12,12v12c0,6,6,12,12,12h30c6,0,12-6,12-12v-12C268-257,262-263,256-263"/>
+		<text transform="matrix(1 0 0 1 230.7754 -243.1)" class="st0 st1 st4">Minus</text>
+	</g>
+	<g id="edge10">
+		<path class="st3" d="M205.8-307.9c6,10.5,13.7,24,20.4,35.8"/>
+		<polygon class="st3" points="229.4,-273.5 231.2,-263.1 223.3,-270.1 		"/>
+		<text transform="matrix(1 0 0 1 219.2246 -283.6)" class="st0 st1 st4">a</text>
+	</g>
+	<g id="node13">
+		<path class="st3" d="M274.5-190h-67c-6,0-12,6-12,12v12c0,6,6,12,12,12h67c6,0,12-6,12-12v-12C286.5-184,280.5-190,274.5-190"/>
+		<text transform="matrix(1 0 0 1 203.6953 -169.5)" class="st0 st1 st5">vdouble11[flower]</text>
+	</g>
+	<g id="edge12">
+		<path class="st3" d="M241-226.8c0,8,0,17.8,0,26.7"/>
+		<polygon class="st3" points="244.5,-200 241,-190 237.5,-200 		"/>
+	</g>
+	<g id="node12">
+		<path class="st3" d="M309.5-344h-31c-6,0-12,6-12,12v12c0,6,6,12,12,12h31c6,0,12-6,12-12v-12C321.5-338,315.5-344,309.5-344"/>
+		<text transform="matrix(1 0 0 1 275.3916 -323.5)" class="st0 st1 st5">threshold</text>
+	</g>
+	<g id="edge11">
+		<path class="st3" d="M282.5-307.9c-7.1,10.6-16.3,24.3-24.2,36.1"/>
+		<polygon class="st3" points="261,-269.5 252.5,-263.1 255.1,-273.4 		"/>
+		<text transform="matrix(1 0 0 1 269 -283.6)" class="st0 st1 st4">b</text>
+	</g>
+	<g id="node17">
+		<path class="st3" d="M256-109h-30c-6,0-12,6-12,12v12c0,6,6,12,12,12h30c6,0,12-6,12-12v-12C268-103,262-109,256-109"/>
+		<text transform="matrix(1 0 0 1 225.2207 -89.1)" class="st0 st1 st4">IsPositive</text>
+	</g>
+	<g id="edge16">
+		<path class="st3" d="M241-153.9c0,10.1,0,23.2,0,34.7"/>
+		<polygon class="st3" points="244.5,-119.1 241,-109.1 237.5,-119.1 		"/>
+		<text transform="matrix(1 0 0 1 241 -129.6)" class="st0 st1 st4">x</text>
+	</g>
+	<g id="node14">
+		<path class="st0" d="M296-498h-30c-6,0-12,6-12,12v12c0,6,6,12,12,12h30c6,0,12-6,12-12v-12C308-492,302-498,296-498"/>
+		<text transform="matrix(1 0 0 1 277.2515 -477.8)" class="st0 st1 st2">-5</text>
+	</g>
+	<g id="node15">
+		<path class="st3" d="M350.5-417h-99c-6,0-12,6-12,12v12c0,6,6,12,12,12h99c6,0,12-6,12-12v-12C362.5-411,356.5-417,350.5-417"/>
+		<text transform="matrix(1 0 0 1 247.6816 -397.1)" class="st0 st1 st4">GaussianFromMeanAndVariance</text>
+	</g>
+	<g id="edge13">
+		<path class="st3" d="M285.3-461.9c2.6,10.1,5.9,23.2,8.8,34.7"/>
+		<polygon class="st3" points="297.6,-427.7 296.7,-417.1 290.8,-425.9 		"/>
+		<text transform="matrix(1 0 0 1 291.3379 -437.6)" class="st0 st1 st4">mean</text>
+	</g>
+	<g id="edge15">
+		<path class="st3" d="M299.3-380.8c-0.8,8-1.8,17.8-2.6,26.7"/>
+		<polygon class="st3" points="300.1,-353.6 295.7,-344 293.2,-354.3 		"/>
+	</g>
+	<g id="node16">
+		<path class="st0" d="M368-498h-30c-6,0-12,6-12,12v12c0,6,6,12,12,12h30c6,0,12-6,12-12v-12C380-492,374-498,368-498"/>
+		<text transform="matrix(1 0 0 1 348.5 -477.8)" class="st0 st1 st2">10</text>
+	</g>
+	<g id="edge14">
+		<path class="st3" d="M341.7-461.9c-7,10.6-16,24.3-23.8,36.1"/>
+		<polygon class="st3" points="320.7,-423.5 312.3,-417.1 314.8,-427.4 		"/>
+		<text transform="matrix(1 0 0 1 328.4551 -437.6)" class="st0 st1 st4">variance</text>
+	</g>
+	<g id="node18">
+		<path class="st0" d="M269.5-36h-57c-6,0-12,6-12,12v12c0,6,6,12,12,12h57c6,0,12-6,12-12v-12C281.5-30,275.5-36,269.5-36"/>
+		<text transform="matrix(1 0 0 1 208.2314 -15.5)" class="st0 st1 st5">isSetosa[flower]</text>
+	</g>
+	<g id="edge17">
+		<path class="st3" d="M241-72.8c0,8,0,17.8,0,26.7"/>
+		<polygon class="st3" points="244.5,-46 241,-36 237.5,-46 		"/>
+	</g>
+</g>
+<text transform="matrix(1 0 0 1 302.5186 94.0134)" class="st6 st7">Lorem ipsum</text>
+</svg>

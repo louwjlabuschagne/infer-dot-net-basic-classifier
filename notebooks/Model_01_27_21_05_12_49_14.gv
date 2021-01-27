@@ -1,0 +1,41 @@
+digraph Model
+{
+    node [ fontsize=8, style="filled, rounded", fillcolor=transparent ];
+
+    node0 [ label="0" fontsize="9" fontcolor="#000000" shape="none" ];
+    node1 [ label="GaussianFromMeanAndVariance" fontsize="8" fontcolor="#FFFFFF" fillcolor="#000000" shape="box" ];
+    node2 [ label="1" fontsize="9" fontcolor="#000000" shape="none" ];
+    node3 [ label="weight" fontsize="10" fontcolor="#0000FF" shape="box" ];
+    node4 [ label="featureValue[flower]" fontsize="10" fontcolor="#0000FF" shape="none" ];
+    node5 [ label="Multiply" fontsize="8" fontcolor="#FFFFFF" fillcolor="#000000" shape="box" ];
+    node6 [ label="score[flower]" fontsize="10" fontcolor="#0000FF" shape="box" ];
+    node7 [ label="GaussianFromMeanAndVariance" fontsize="8" fontcolor="#FFFFFF" fillcolor="#000000" shape="box" ];
+    node8 [ label="10" fontsize="9" fontcolor="#000000" shape="none" ];
+    node9 [ label="noisyScore[flower]" fontsize="10" fontcolor="#0000FF" shape="box" ];
+    node10 [ label="Minus" fontsize="8" fontcolor="#FFFFFF" fillcolor="#000000" shape="box" ];
+    node11 [ label="threshold" fontsize="10" fontcolor="#0000FF" shape="box" ];
+    node12 [ label="vdouble11[flower]" fontsize="10" fontcolor="#0000FF" shape="box" ];
+    node13 [ label="-5" fontsize="9" fontcolor="#000000" shape="none" ];
+    node14 [ label="GaussianFromMeanAndVariance" fontsize="8" fontcolor="#FFFFFF" fillcolor="#000000" shape="box" ];
+    node15 [ label="10" fontsize="9" fontcolor="#000000" shape="none" ];
+    node16 [ label="IsPositive" fontsize="8" fontcolor="#FFFFFF" fillcolor="#000000" shape="box" ];
+    node17 [ label="isSetosa[flower]" fontsize="10" fontcolor="#0000FF" shape="none" ];
+
+    node0 -> node1 [ label="mean" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node2 -> node1 [ label="variance" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node1 -> node3 [ label="" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node4 -> node5 [ label="a" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node3 -> node5 [ label="b" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node5 -> node6 [ label="" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node6 -> node7 [ label="mean" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node8 -> node7 [ label="variance" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node7 -> node9 [ label="" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node9 -> node10 [ label="a" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node11 -> node10 [ label="b" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node10 -> node12 [ label="" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node13 -> node14 [ label="mean" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node15 -> node14 [ label="variance" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node14 -> node11 [ label="" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node12 -> node16 [ label="x" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node16 -> node17 [ label="" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+}
