@@ -28,31 +28,31 @@ namespace model
             }
 
             // Creating the model
-            int numberOfFlowers = lines.Length;
-            Range flower = new Range(numberOfFlowers).Named("flower");
+            int numberOfSample = lines.Length;
+            Range n = new Range(numberOfSample).Named("n");
 
             // Make sure that the range across flowers is handled sequentially
-            flower.AddAttribute(new Sequential());
+            n.AddAttribute(new Sequential());
 
             // Variables
 
             // The feature - x
-            VariableArray<double> featureValues = Variable.Array<double>(flower).Named("featureValue").Attrib(new DoNotInfer());
+            VariableArray<double> featureValues = Variable.Array<double>(n).Named("featureValue").Attrib(new DoNotInfer());
             // The label - y
-            VariableArray<bool> isSetosa = Variable.Array<bool>(flower).Named("isSetosa");
+            VariableArray<bool> isSetosa = Variable.Array<bool>(n).Named("isSetosa");
 
             // The weight - w
             Variable<double> weight = Variable.GaussianFromMeanAndVariance(0,1).Named("weight");     
             // The threshold
-            Variable<double> threshold = Variable.GaussianFromMeanAndVariance(-5,10).Named("threshold");
+            Variable<double> threshold = Variable.GaussianFromMeanAndVariance(0,10).Named("threshold");
 
-            // Loop over flowers
-            using (Variable.ForEach(flower))
+            // Loop over ns
+            using (Variable.ForEach(n))
             {
-                var score = (featureValues[flower] * weight).Named("score");
+                var score = (featureValues[n] * weight).Named("score");
 
                 var noisyScore = Variable.GaussianFromMeanAndVariance(score, 10).Named("noisyScore");
-                isSetosa[flower] = noisyScore > threshold;
+                isSetosa[n] = noisyScore > threshold;
             }
 
             /********* observations *********/
@@ -63,7 +63,7 @@ namespace model
             /********** inference **********/
             var InferenceEngine = new InferenceEngine(new ExpectationPropagation());
             // var InferenceEngine = new InferenceEngine(new VariationalMessagePassing());
-            InferenceEngine.NumberOfIterations = 200;
+            InferenceEngine.NumberOfIterations = 50;
             // InferenceEngine.ShowFactorGraph = true;
 
             Gaussian postWeight = InferenceEngine.Infer<Gaussian>(weight);
