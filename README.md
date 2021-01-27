@@ -7,7 +7,9 @@ Although the <a href="https://mbmlbook.com/index.html">MBML book</a> is a brilli
 
 A factor graph is a bipartite graph representing the factorization of a function. Given a factorization of a function $g$,
 
+```math
 $$g(X_1,X_2,\dots,X_n) = \prod_{j=1}^m f_j(S_j),$$
+```
 
 where ${\displaystyle S_{j}\subseteq \{X_{1},X_{2},\dots ,X_{n}\}}$, the corresponding factor graph ${\displaystyle G=(X,F,E)}$ consists of variable vertices ${\displaystyle X=\{X_{1},X_{2},\dots ,X_{n}\}}$, factor vertices ${\displaystyle F=\{f_{1},f_{2},\dots ,f_{m}\}}$, and edges ${\displaystyle E}$. The edges depend on the factorization as follows: there is an undirected edge between factor vertex ${\displaystyle f_{j}}$ and variable vertex ${\displaystyle X_{k}}$  iff ${\displaystyle X_{k}\in S_{j}}$.
 
